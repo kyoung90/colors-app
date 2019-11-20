@@ -5,6 +5,9 @@ import { generatePalette } from "./colorHelpers";
 import { Route, Switch } from "react-router-dom";
 
 function App() {
+  const findPalette = id => {
+    return seedColors.find(palette => palette.id === id);
+  };
   return (
     <div>
       <Switch>
@@ -12,7 +15,11 @@ function App() {
         <Route
           exact
           path="/palette/:id"
-          render={() => <Palette palette={generatePalette(seedColors[4])} />}
+          render={routeProps => (
+            <Palette
+              palette={generatePalette(findPalette(routeProps.match.params.id))}
+            />
+          )}
         ></Route>
       </Switch>
     </div>

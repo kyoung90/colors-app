@@ -10,7 +10,7 @@ export const Palette = props => {
   const [format, setFormat] = useState("hex");
 
   const colorBoxes = colors[level].map(color => (
-    <ColorBox background={color[format]} name={color.name} />
+    <ColorBox key={color.id} background={color[format]} name={color.name} />
   ));
 
   const changeLevel = lvl => {
@@ -29,7 +29,10 @@ export const Palette = props => {
         handleSelect={changeFormat}
       />
       <div className="Palette-colors">{colorBoxes}</div>
-      {/*Footer eventually */}
+      <footer className="Palette-footer">
+        {props.palette.paletteName}
+        <span className="emoji">{props.palette.emoji}</span>
+      </footer>
     </div>
   );
 };
